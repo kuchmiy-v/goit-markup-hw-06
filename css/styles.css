@@ -656,6 +656,7 @@ header {
 .modal {
   padding: 24px;
   padding-top: 72px;
+  /* padding-right: 24px; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -686,11 +687,22 @@ header {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .modal-title {
   /* width: 360px; */
-  margin-bottom: 34px;
+  margin-bottom: 14px;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -701,6 +713,10 @@ header {
 
 .form-field {
   margin-bottom: 8px;
+}
+.input-wrap {
+  position: relative;
+  padding-right: 24px;
 }
 
 .form-input {
@@ -715,7 +731,22 @@ header {
   line-height: 1.17;
   letter-spacing: 0.01em;
   color: var(--primary-text-color);
-  padding-left: 16px;
+  padding-left: 38px;
+  /* outline-color: none; */
+  outline-color: var(--accent-color);
+}
+
+.form-input:focus {
+  /* border: 1px solid #4D5AE5;
+  border-radius: 4px;  */
+  /* border-color: var(--accent-color); */
+}
+.form-input:focus + .input-icon {
+  fill: var(--accent-color);
+}
+.form-input:not(:placeholder-shown):not(:focus):valid {
+}
+.form-input:not(:placeholder-shown):not(:focus):invalid {
 }
 
 .form-input::placeholder {
@@ -726,13 +757,11 @@ header {
   color: rgba(117, 117, 117, 0.5);
 }
 
-.form-input:focus{
-  /* border: 1px solid #4D5AE5;
-  border-radius: 4px;  */
-}
-.form-input:not(:placeholder-shown):not(:focus):valid {
-}
-.form-input:not(:placeholder-shown):not(:focus):invalid {
+.input-icon {
+  position: absolute;
+  left: 19px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .form-label {
@@ -744,3 +773,95 @@ header {
   color: #8e8f99;
   margin-bottom: 4px;
 }
+
+.modal-comment {
+  padding: 12px;
+  width: 100%;
+  min-height: 120px;
+
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
+  color: var(--primary-text-color);
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  outline-color: var(--accent-color);
+  background-color: transparent;
+  resize: none;
+}
+.modal-comment::placeholder {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: rgba(117, 117, 117, 0.5);
+}
+
+.check-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: #757575;
+  display: flex;
+  align-items: center;
+}
+.check-text::before {
+  content: " ";
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid var(--hero-background-color);
+  border-radius: 2px;
+  display: block;
+  margin-right: 7px;
+}
+.input-check:checked + .check-text::before {
+  background-color: var(--icon-hover);
+  border: none;
+  background-image: url(../img/check.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* по тз до дз для іконки галочки
+.check-text span {
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid var(--hero-background-color);
+  border-radius: 2px;
+  margin-right: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: transparent;
+}
+.input-check:checked + .check-text span {
+  background-color: var(--icon-hover);
+  border: none;
+  fill: var(--cards-bg-color);
+} */
+
+/* ще один варіант, який часто зустрічається крапочка-перемикач:
+.check-text::after {
+  content: " ";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: block;
+  margin-right: 7px;
+  transition: transform 300ms linear, background-color 300ms linear;
+}
+.input-check:checked + .check-text::after {
+  transform: translate(18px);
+  background-color: #fff;
+}
+.input-check:checked + .check-text::before {
+  background-color: rgb(133, 197, 114);
+  border: none;
+} */
